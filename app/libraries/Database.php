@@ -25,11 +25,14 @@
       );
 
       // Create PDO instance
-      try{
+      try {
         $this->dbh = new PDO($dsn, $this->user, $this->pass, $options);
-      } catch(PDOException $e){
-        $this->error = $e->getMessage();
-        echo $this->error;
+        $this->createPublicationsTable();
+        $this->createUserTable();
+        
+      } catch(PDOException $e) {
+          $this->error = $e->getMessage();
+          die("Connection failed: " . $this->error); // Stop execution and display the error
       }
     }
 
@@ -79,6 +82,30 @@
     // Get row count
     public function rowCount(){
       return $this->stmt->rowCount();
+    }
+    public function createPublicationsTable() {
+      $sql = "
+          CREATE TABLE IF NOT EXISTS publications (
+              id INT AUTO_INCREMENT PRIMARY KEY,
+              title VARCHAR(255) NOT NULL,
+              description TEXT,
+              price DECIMAL(10, 2),
+              user_id INT
+          )";
+      $this->query($sql);
+      return $this->execute();
+    }
+    public function createUserTable() {
+      $sql = "
+          CREATE TABLE IF NOT EXISTS users  (
+              id INT AUTO_INCREMENT PRIMARY KEY,
+              name VARCHAR(255) NOT NULL,
+              email VARCHAR(255) NOT NULL,
+              city VARCHAR(255) NOT NULL,
+              password VARCHAR(255) NOT NULL
+          )";
+      $this->query($sql);
+      return $this->execute();
     }
   }
   ?>
