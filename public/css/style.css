@@ -114,7 +114,7 @@ body{
 }
 
 .publications-container{
-    border: 1Px solid green;
+    /* border: 1Px solid green; */
     width: 60%;
     display: flex;
     justify-content: center;
@@ -185,7 +185,32 @@ body{
 .user-name2{
     font-weight: 600;
 }
+
+
 .users-container{
+    margin-top: 20px;
+    border-radius: 10px;
+    border: 1px solid #fff;
+    position: fixed;
+    left: 80%;
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-top: 20px;
+    padding: 10px;
+    width: 18%;
+}
+.users-container h3{
+    font-size: 20px;
+    font-family: 'Edu TAS Beginner', cursive;
+}
+.user-row{
     
-    width: 20%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.user-row h2{
+    font-size: 16px;
 }
