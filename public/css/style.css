@@ -1,4 +1,117 @@
+@import url('https://fonts.googleapis.com/css2?family=Edu+TAS+Beginner:wght@400;500&display=swap');
+
 *{
     padding: 0;
     margin: 0;
+    /* border: 1px solid red; */
+}
+body{
+    background-color: #041C32;
+    color: #fff;
+}
+.navbar-container{
+    display: flex;
+    height: 10vh;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 15px;
+    background-color: #04293A;
+    border-radius: 5px;
+}
+.logo{
+    font-family: 'Edu TAS Beginner', cursive;
+    color: #ECB365;
+}
+.right{
+    /* border: 1px solid red; */
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 15%;
+    height: 100%;
+}
+
+.sign-btn , .login-btn{
+    background-color: #ECB365;
+    padding: 10px;
+    font-size: 14px;
+    font-weight: 200;
+    border-radius: 7Px;
+    cursor: pointer;
+    text-decoration: none;
+    color: #fff;
+}
+.sign-btn:hover , .login-btn:hover{
+    background-color: #F4DFC8;
+    color: #000000;
+    text-decoration: none;
+}
+.hert-navbar{
+    height: 30px;
+    width: 30px;
+   
+}
+.hert-navbar img{
+    height: 100%;
+    width: 100%;
+    
+}
+.app-container{
+    /* border: 1Px solid red; */
+    min-height: 80vh;
+    width: 100%;
+    /* padding: 15px ; */
+    display: flex;
+}
+.sidebar-container{
+    /* border: 1Px solid red; */
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 25px 0;
+}
+.sidebar-items{
+    border: 1Px solid #fff;
+    height: fit-content;
+    min-height: 90%;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #04293A;
+}
+
+
+.sidebar-item{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 7px;
+    
+}
+.sidebar-item img{
+    height: 30px;
+    height: 30px;
+}
+.sidebar-item a{
+    text-decoration: none;
+    color: #fff;
+    font-weight: 500;
+    font-size: 18px;
+}
+.sidebar-item a:hover{
+    color: #ECB365;
+    font-weight: 600;
+    padding-left: 5px;
+    transition: 0.2s;
+    
+}
+
+.publications-container{
+    border: 1Px solid red;
+    width: 60%;
+}
+.users-container{
+    border: 1Px solid red;
+    width: 20%;
 }
