@@ -174,7 +174,7 @@
       $_SESSION['user_email'] = $user->email;
       $_SESSION['user_name'] = $user->name;
       $_SESSION['user_city'] = $user->city;
-      redirect('posts');
+      redirect('publications');
     }
 
     public function logout(){
