@@ -11,17 +11,50 @@
         <div class="pub-card">
             <div class="pub-header">
                 <div class="user-img">
-                    <img src="" alt="" srcset="">
+                    <img src="<?php echo URLROOT; ?>/img/med hachami.jpg" >
                 </div>
                 <div class="user-details">
-                    <p class="user-name">Mohamed Hachami</p>
+                    <p class="user-name1">Mohamed Hachami</p>
                     <p class="user-city">Marrakech</p>
                 </div>
             </div>
-            <div class="pub-">
-
+            <div class="thumb" style="" >
+                <img src="<?php echo URLROOT; ?>/img/teambg.jpeg" alt="" class="" style="width: 100%;" >
             </div>
+            <div class="pub-footer">
+                <img src="<?php echo URLROOT; ?>/img/heart-icon.png" alt="" >
+                <div class="row1">
+                    <p class="user-name2">MedHachami</p>
+                    <p class="description">Lorem ipsum dolor sit amet consectetur adipisicing elits.amet consectetur adipisicing elits. </p>
+                </div>
+                
+            </div>
+            
         </div>
+        <div class="pub-card">
+            <div class="pub-header">
+                <div class="user-img">
+                    <img src="<?php echo URLROOT; ?>/img/med hachami.jpg" >
+                </div>
+                <div class="user-details">
+                    <p class="user-name1">Mohamed Hachami</p>
+                    <p class="user-city">Marrakech</p>
+                </div>
+            </div>
+            <div class="thumb" style="" >
+                <img src="<?php echo URLROOT; ?>/img/teambg.jpeg" alt="" class="" style="width: 100%;" >
+            </div>
+            <div class="pub-footer">
+                <img src="<?php echo URLROOT; ?>/img/heart-icon.png" alt="" >
+                <div class="row1">
+                    <p class="user-name2">MedHachami</p>
+                    <p class="description">Lorem ipsum dolor sit amet consectetur adipisicing elits. </p>
+                </div>
+                
+            </div>
+            
+        </div>
+        
     </div>
     <div class="users-container">
         <h1>right</h1>
