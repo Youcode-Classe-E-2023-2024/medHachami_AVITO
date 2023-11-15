@@ -29,7 +29,7 @@
           <a class="login-btn" href="<?php echo URLROOT; ?>/users/logout">Logout</a>
       <?php else : ?>
       <a class="sign-btn" href="<?php echo URLROOT; ?>/users/register">Sign In</a>
-      <a class="login-btn">Login In</a>
+      <a class="login-btn" href="<?php echo URLROOT; ?>/users/login">Login In</a>
       <?php endif; ?>
     </div>
     
