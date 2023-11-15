@@ -90,6 +90,7 @@
               title VARCHAR(255) NOT NULL,
               description TEXT,
               price DECIMAL(10, 2),
+              imgUrl VARCHAR(255)  DEFAULT 'teambg.jpeg',
               user_id INT
           )";
       $this->query($sql);
@@ -102,6 +103,7 @@
               name VARCHAR(255) NOT NULL,
               email VARCHAR(255) NOT NULL,
               city VARCHAR(255) NOT NULL,
+              imgUrl VARCHAR(255)  DEFAULT 'med hachami.jpg',
               password VARCHAR(255) NOT NULL
           )";
       $this->query($sql);
