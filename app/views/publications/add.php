@@ -7,7 +7,40 @@
             <li class="sidebar-item"><img src="<?php echo URLROOT; ?>/img/users-icon.png" ><a href="" class="sidebar-link">View User</a></li>
         </ul>
     </div>
-    
+    <div class="publications-container">
+            <?php if(isset($_GET['action']) ){?>
+                <div class="alert alert-primary" role="alert">
+                    Publication added successfully
+                </div>
+            <?php }?>
+            
+        <form class="form" method="POST" action="<?php echo URLROOT; ?>/publications/add" enctype="multipart/form-data" >
+            
+            <div class="input-row">
+                <span>title*</span>
+                <input type="text" name="title" >
+            </div>
+            <div class="input-row">
+                <span>Description*</span>
+                <input type="text" name="description" >
+            </div>
+            <div class="input-row">
+                <span>Price*</span>
+                <input type="text" name="price" >
+            </div>
+            <div class="input-row">
+                <span>Image*</span>
+                <input type="file" name="image" name="image" >
+            </div>
+            <?php if (!empty($data['error'])) : ?>
+                <div class="alert alert-danger"><?php echo $data['error']; ?></div>
+            <?php endif; ?>
+            <?php if (!empty($data['image_err'])) : ?>
+                <div class="alert alert-danger"><?php echo $data['image_err']; ?></div>
+            <?php endif; ?>
+            <input type="submit" class="add-btn" value="Submit">
+        </form>
+    </div>
 
 </div>
 <?php require APPROOT . '/views/inc/footer.php'; ?>
