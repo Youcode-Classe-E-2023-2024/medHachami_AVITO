@@ -9,12 +9,13 @@
 
     // Regsiter user
     public function register($data){
-      $this->db->query('INSERT INTO users (name, email, password,city) VALUES(:name, :email, :password, :city)');
+      $this->db->query('INSERT INTO users (name, email, password,city,imgUrl) VALUES(:name, :email, :password, :city,:imgUrl)');
       // Bind values
       $this->db->bind(':name', $data['name']);
       $this->db->bind(':email', $data['email']);
       $this->db->bind(':password', $data['password']);
       $this->db->bind(':city', $data['city']);
+      $this->db->bind(':imgUrl', $data['image']);
 
 
       // Execute
@@ -66,4 +67,14 @@
 
       return $row;
     }
+
+    public function getUers($id){
+      $this->db->query('SELECT * FROM users where id <>:id LIMIT 5;');
+      // Bind value
+      $this->db->bind(':id', $id);
+      $results = $this->db->resultSet();
+
+      return $results;
+  }
+
   }
