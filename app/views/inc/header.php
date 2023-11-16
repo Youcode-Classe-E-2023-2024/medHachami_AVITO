@@ -25,6 +25,7 @@
     </div>
     <div class="right">
       <?php if(isset($_SESSION['user_id'])) : ?>
+      <img src="<?php echo URLROOT . "/img/" . $_SESSION['user_img']; ?>" alt="" srcset="" class="profile-img">
           <a class="hert-navbar"><img src="<?php echo URLROOT; ?>/img/heart-icon.png" alt="" srcset=""></a>
           <a class="login-btn" href="<?php echo URLROOT; ?>/users/logout">Logout</a>
       <?php else : ?>
