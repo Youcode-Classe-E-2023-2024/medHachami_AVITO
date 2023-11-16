@@ -1,10 +1,10 @@
 <?php require APPROOT . '/views/inc/header.php'; ?>
   <div class="text-secondary">
     <div class="col-md-4 mx-auto">
-      <div class="card card-body mt-3">
+      <div class="card card-body register">
         <h2>Create An Account</h2>
         <p>Please fill out this form to register with us</p>
-        <form action="<?php echo URLROOT; ?>/users/register" method="post">
+        <form action="<?php echo URLROOT; ?>/users/register" method="post" enctype="multipart/form-data">
           <div class="form-group">
             <label for="name">Name: <sup>*</sup></label>
             <input type="text" name="name" class="form-control form-control-lg <?php echo (!empty($data['name_err'])) ? 'is-invalid' : ''; ?>" value="<?php echo $data['name']; ?>">
@@ -19,6 +19,11 @@
             <label for="email">City: <sup>*</sup></label>
             <input type="text" name="city" class="form-control form-control-lg <?php echo (!empty($data['city_err'])) ? 'is-invalid' : ''; ?>" value="<?php echo $data['city']; ?>">
             <span class="invalid-feedback"><?php echo $data['city_err']; ?></span>
+          </div>
+          <div class="form-group">
+            <label for="email">Image: <sup>*</sup></label>
+            <input type="file" name="image" class="form-control form-control-lg ">
+            <span class="invalid-feedback"><?php echo $data['image_err']; ?></span>
           </div>
           <div class="form-group">
             <label for="password">Password: <sup>*</sup></label>
