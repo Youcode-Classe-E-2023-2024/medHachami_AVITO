@@ -7,6 +7,7 @@
     public function register(){
       // Check for POST
       if($_SERVER['REQUEST_METHOD'] == 'POST'){
+        // die('Reached after form submission');
         // Process form
   
         // Sanitize POST data
@@ -66,21 +67,41 @@
         // Make sure errors are empty
         if(empty($data['email_err']) && empty($data['name_err']) && empty($data['city_err']) && empty($data['password_err']) && empty($data['confirm_password_err'])){
           // Validated
-          
+          // die('before upld');
           // Hash Password
           $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
+          if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
+            // die('inside upld 1');  
+            $allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif'];
 
-          // Register User
-          if($this->userModel->register($data)){
-            // flash('register_success', 'You are registered and can log in');
-            redirect('users/login');
+                // die('inside upld 1');
+              if (in_array($_FILES['image']['type'], $allowedTypes)) {
+                // die('inside upld 1');
+                  $imagePath = $this->uploadImage($_FILES['image']);
+                  $data['image'] = $imagePath;
+
+                  // Register User
+                  if($this->userModel->register($data)){
+                    // die('inside upld 2');
+                    redirect('users/login');
+                  } else {
+                    // die('Something went wrong');
+                    echo "err" . $data['error'];
+                    // die('inside upld 3');
+                  }
+              } else {
+                  // Handle invalid file type
+                  $data['image_err'] = 'Invalid file type. Please upload a JPEG, PNG, or GIF image.';
+              }
           } else {
-            die('Something went wrong');
+              // Handle file upload error
+              $data['image_err'] = 'File upload error.';
           }
-
+    
         } else {
           // Load view with errors
           $this->view('users/register', $data);
+          
         }
 
       } else {
@@ -100,6 +121,7 @@
 
         // Load view
         $this->view('users/register', $data);
+        
       }
     }
 
@@ -174,7 +196,8 @@
       $_SESSION['user_email'] = $user->email;
       $_SESSION['user_name'] = $user->name;
       $_SESSION['user_city'] = $user->city;
-      redirect('publications');
+      $_SESSION['user_img'] = $user->imgUrl;
+      redirect('publications/');
     }
 
     public function logout(){
@@ -184,5 +207,18 @@
       unset($_SESSION['user_city']);
       session_destroy();
       redirect('users/login');
+    }
+
+    private function uploadImage($file) {
+      $target_dir = APPROOT . "/../public/img/";
+      $target_file = $target_dir . basename($file["name"]);
+  
+      // Ensure the directory exists, create it if not
+      if (!is_dir($target_dir)) {
+          mkdir($target_dir, 0755, true);
+      }
+  
+      move_uploaded_file($file["tmp_name"], $target_file);
+      return basename($file["name"]);
     }
   }
