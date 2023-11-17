@@ -4,7 +4,7 @@
         <ul class="sidebar-items">
             <li class="sidebar-item"><img src="<?php echo URLROOT; ?>/img/home-icon.png" ><a href="" class="sidebar-link">Home</a></li>
             <li class="sidebar-item"><img src="<?php echo URLROOT; ?>/img/add-icon.png" ><a href="<?php echo URLROOT; ?>/publications/add" class="sidebar-link">Add Publication</a></li>
-            <li class="sidebar-item"><img src="<?php echo URLROOT; ?>/img/users-icon.png" ><a href="" class="sidebar-link">View User</a></li>
+            <li class="sidebar-item"><img src="<?php echo URLROOT; ?>/img/books-icon.png" ><a href="<?php echo URLROOT; ?>/publications/myPublication" class="sidebar-link">My publications</a></li>
         </ul>
     </div>
     <div class="publications-container">
@@ -25,7 +25,14 @@
                 <img src="<?php echo URLROOT . "/img/" . $pub->pub_img; ?>" class="" style="width: 100%;" alt="Publication Image">
             </div>
             <div class="pub-footer">
-                <img src="<?php echo URLROOT; ?>/img/heart-icon.png" alt="" >
+                
+            <?php if (!$this->isLiked($pub->pub_id, $_SESSION['user_id'])) { ?>
+                
+                <img class="heart" src="<?php echo URLROOT; ?>/img/heart-icon.png" alt="" onclick="like(<?php echo $pub->pub_id; ?>, <?php echo $_SESSION['user_id']; ?>)" >
+            <?php } else { ?>
+                
+                <img class="heart" src="<?php echo URLROOT; ?>/img/like-heart.png" alt="" onclick="like(<?php echo $pub->pub_id; ?>, <?php echo $_SESSION['user_id']; ?>)" >
+            <?php } ?>  
                 <div class="row1">
                     <p class="user-name2"><?php echo $pub->user_name; ?></p>
                     <p class="description"><?php echo $pub->pub_description; ?></p>
