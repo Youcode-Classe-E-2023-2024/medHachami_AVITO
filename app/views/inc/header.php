@@ -17,6 +17,15 @@
       align-items: center;
       /* height:60px; */
     }
+    .myPub-thumb{
+      align-self:center; 
+       
+      width: 241px;
+      display: block;
+      align-items: center;
+      /* height:60px; */
+    }
+
   </style>
 </head>
 <nav class="navbar-container">
@@ -26,7 +35,6 @@
     <div class="right">
       <?php if(isset($_SESSION['user_id'])) : ?>
       <img src="<?php echo URLROOT . "/img/" . $_SESSION['user_img']; ?>" alt="" srcset="" class="profile-img">
-          <a class="hert-navbar"><img src="<?php echo URLROOT; ?>/img/heart-icon.png" alt="" srcset=""></a>
           <a class="login-btn" href="<?php echo URLROOT; ?>/users/logout">Logout</a>
       <?php else : ?>
       <a class="sign-btn" href="<?php echo URLROOT; ?>/users/register">Sign In</a>
