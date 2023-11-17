@@ -14,6 +14,7 @@
     public function index(){
       $users = $this->userModel->getUers($_SESSION['user_id']);
       $publications = $this->publicationModel->getPublications();
+      
       foreach ($publications as $key => $publication) {
         $publications[$key]->diffTime = $this->getTimeDifference($publication->pub_created_at);
       }
@@ -21,9 +22,27 @@
       $data = [
         'publications' => $publications,
         'users' => $users,
+        
       ];
 
       $this->view('publications/index', $data);
+    }
+
+    public function myPublication(){
+      $users = $this->userModel->getUers($_SESSION['user_id']);
+      $publications = $this->publicationModel->getMyPublications();
+      
+      foreach ($publications as $key => $publication) {
+        $publications[$key]->diffTime = $this->getTimeDifference($publication->pub_created_at);
+      }
+      // $diffTime = $this->getTimeDifference($publications['']);
+      $data = [
+        'publications' => $publications,
+        'users' => $users,
+        
+      ];
+
+      $this->view('publications/myPublication', $data);
     }
 
     public function add() {
@@ -94,16 +113,37 @@
       $minutes = $interval->i;
       $seconds = $interval->s;
   
-      if ($interval->h > 0 || $interval->days > 0) {
-          // If hours or days are greater than 0, consider it as minutes
-          $minutes += $interval->h * 60 + $interval->days * 24 * 60;
-      }
-  
-      if ($minutes > 0) {
+      if ($interval->days > 0) {
+        return $interval->days . " days ago";
+      } elseif ($interval->h > 0) {
+          return $interval->h . " hours ago";
+      } elseif ($minutes > 0) {
           return $minutes . " minutes ago";
       } else {
           return $seconds . " seconds ago";
       }
+    }
+
+    public function likePublication($publicationId,$userId) {
+      if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+          // $userId = $_SESSION['user_id'];
+          $result = $this->publicationModel->addLike($userId, $publicationId);
+          //Check if the user has already liked the publication
+          if ($result === 1) {
+            // Return a success message
+            echo json_encode(['status' => 'liked', 'message' => 'Like added successfully!']);
+        } elseif ($result === 0) {
+            echo json_encode(['status' => 'disliked', 'message' => 'You have already liked this publication.']);
+        } else {
+            // Handle other cases or errors
+            echo json_encode(['status' => 'error', 'message' => 'An error occurred.']);
+        }
+      }
+  }
+  
+  public function isLiked($publicationId, $userId) {
+    $result = $this->publicationModel->hasLiked($publicationId,$userId);
+    return $result ? 1 : 0;
   }
     
 
