@@ -32,24 +32,14 @@ function like(publicationId,userId){
     
 }
 
-// function showHeart(publicationId,userId){
-//     var heart = document.querySelector(".heart");
-//     fetch(`http://localhost/medHachami_AVITO/publications/isLiked/${publicationId}/${userId}`, {
-//         method: 'POST',
-//         headers: {
-//             'Content-Type': 'application/json',
-//         },
-        
-//     })
-//     .then(response => response.json())
-//     .then(data => {
-//         if (data.status) {
-//             heart.src = 'path/to/liked-heart-icon.png';
-//         } else {
-//             heart.src = 'path/to/liked-heart-icon.png';
-//         }
-//     })
-//     .catch(error => {
-//         console.error(error);
-//     });
-// }
+function displayOption(clickedElement) {
+    var listOptions = clickedElement.closest('.pub-header').querySelector(".editList");
+    
+    if (listOptions.style.display === "none") {
+        listOptions.style.display = "block";
+    } else {
+        listOptions.style.display = "none";
+    }
+}
+
+

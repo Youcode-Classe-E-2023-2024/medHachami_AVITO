@@ -68,6 +68,39 @@ class Publication{
         return $this->db->execute();
     }
 
+    public function editPublication($data){
+        $this->db->query('UPDATE publications
+                     SET title = :title, 
+                     description = :description ,
+                      price = :price
+                       WHERE id = :id');
+
+        // Bind values
+        $this->db->bind(':title', $data['title']);
+        $this->db->bind(':description', $data['description']);
+        $this->db->bind(':price', $data['price']);
+        
+        
+        
+
+        $this->db->bind(':id', $data['id']);
+
+        // Execute
+        return $this->db->execute();
+    }
+
+    public function getPublication($id){
+        $this->db->query('SELECT *
+                      FROM publications
+                      WHERE id =:id
+                      ');
+        // Bind values
+        $this->db->bind(':id', $id);
+        $results = $this->db->resultSet();
+
+        return $results;
+    }
+
     public function addLike($userId, $publicationId) {
         $this->db->query('SELECT * FROM likes WHERE user_id = :user_id AND publication_id = :publication_id');
         $this->db->bind(':user_id', $userId);
@@ -91,9 +124,7 @@ class Publication{
     
         
     }
-    // public function dislike($userId, $publicationId) {
-       
-    // }
+    
 
 
     public function hasLiked($publicationId,$userId) {

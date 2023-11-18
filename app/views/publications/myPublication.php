@@ -20,7 +20,13 @@
                 <div class="user-details">
                     <p class="user-name1"><?php echo $pub->user_name;  ?></p>
                     <p class="user-city"><?php echo $pub->user_city; ?></p>
+                    
                 </div>
+                <img src="<?php echo URLROOT . "/img/lines-icon.png" ?> "  class="edit-btn " alt="" onclick="displayOption(this)">
+                <ul class="editList">
+                    <li><a href="<?php echo URLROOT; ?>/publications/edit?id=<?php echo $pub->pub_id ?>">Edit</a></li>
+                    <li><a href="<?php echo URLROOT; ?>/publications/delete?id=<?php echo $pub->pub_id ?>">Delete</a></li>
+                </ul>
             </div>
             <div class="myPub-thumb" style="" >
                 <img src="<?php echo URLROOT . "/img/" . $pub->pub_img; ?>" class="" style="width: 100%;" alt="Publication Image">

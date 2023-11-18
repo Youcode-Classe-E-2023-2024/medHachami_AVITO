@@ -45,6 +45,7 @@
       $this->view('publications/myPublication', $data);
     }
 
+
     public function add() {
       $data = [];
   
@@ -86,6 +87,42 @@
   
       // Load the view with data
       $this->view('publications/add', $data);
+    }
+
+    public function edit(){
+      $data = [];
+  
+      if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+          // Sanitize POST array
+          $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+
+          $data = [
+              'id' => trim($_POST['id']),
+              'title' => trim($_POST['title']),
+              'description' => trim($_POST['description']),
+              'price' => trim($_POST['price']),
+              
+          ];
+          if ($this->publicationModel->editPublication($data)) {
+            // Redirect on success
+            redirect('publications/myPublication?action=edited');
+            // echo "succes";
+          } else {
+              
+              redirect('publications/myPublication/?action=error');
+              
+          }
+          
+      }
+
+
+      $id = $_GET['id'];
+      $publication = $this->publicationModel->getPublication($id);
+      $data = [
+        'publication' => $publication,
+      ];
+
+      $this->view('publications/edit', $data);
     }
 
     private function uploadImage($file) {
